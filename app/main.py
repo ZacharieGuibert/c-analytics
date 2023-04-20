@@ -4,11 +4,10 @@ Created on Wed Apr 19 09:23:56 2023
 
 @author: zacha
 """
-# streamlit run c:\users\zacha\onedrive\desktop\chronovet\app\streamlit\c_analytics.py
-
 import streamlit as st
 import numpy as np
 import pandas as pd
+import git
 import plotly.express as px
 import datetime
 from PIL import Image
@@ -43,6 +42,13 @@ with col3:
 
 ############### FUNCTIONS ############### 
 @st.cache
+def get_repo():
+    try:
+        git.Git(".").clone("https://github.com/ZacharieGuibert/c-analytics")
+    except git.GitCommandError:
+        repo = git.Repo("c-analytics")
+        repo.remotes.origin.pull()
+
 def load_data(path):
     dataset = pd.read_excel(path, parse_dates=True)
     return dataset
