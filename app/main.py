@@ -390,17 +390,17 @@ with st.form ('chiffre affaires'):
     
     st.markdown("**Completer les deux champs ci-dessous pour sauvegarder le tableau sous format Excel**")
     
-    #ca_path = st.text_input("Endroit où sauvegarder le fichier", "Rentrer ici l'adresse du dossier")
+    ca_path = st.text_input("Endroit où sauvegarder le fichier", "Rentrer ici l'adresse du dossier")
     
     ca_xlsxname = st.text_input("Nom du fichier", "Donner ici un nom au fichier")
     
     submitted_ca = st.form_submit_button('Submit')
 
     if submitted_ca:
-        #final_ca_path = ca_path
+        final_ca_path = ca_path
         final_ca_xlsxname = ca_xlsxname
-        #if final_ca_path != "Rentrer ici l'adresse du dossier" and final_ca_xlsxname != "Donner ici un nom au fichier":
-        if final_ca_xlsxname != "Donner ici un nom au fichier":
+        if final_ca_path != "Rentrer ici l'adresse du dossier" and final_ca_xlsxname != "Donner ici un nom au fichier":
+        #if final_ca_xlsxname != "Donner ici un nom au fichier":
             ca_df = largest_data(historical, ca_type, ca_quantity)
             ca_df = ca_df.apply(lambda x: x.replace('.', ','))
             #ca_filename = str(ca_quantity) +'% plus important(e)s ' + str(ca_type) +'_' + str(ca_start_date) + '.xlsx'
